@@ -1,0 +1,33 @@
+class dsunion{
+    vector<int>rank,parent;
+public:
+    dsunion(int n){
+        rank.resize(n+1,0);
+        parent.resize(n+1,0);
+        rep(i,1,n){
+            parent[i]=i;
+        }
+    }
+    
+    int findpar(int node){
+        if(node==parent[node])
+            return node;
+        return parent[node]=findpar(parent[node]);
+    }
+
+    void unionrank(int u, int v){
+        int paru=findpar(u);
+        int parv=findpar(v);
+        if(paru==parv) return;
+        if(paru<parv){
+            parent[paru]=parv;
+        }
+        else if(paru>parv){
+            parent[parv]=paru;
+        }
+        else{
+            parent[parv]=paru;
+            rank[paru]++;
+        }
+    }
+};
