@@ -1,0 +1,38 @@
+class SparseTable{
+ 
+private:
+    vector<int>a;
+    vector<vector<int>>dp;
+    int n;
+    int siz;
+ 
+public:
+    SparseTable(vector<int>&v){
+        a=v;
+        n=a.size();
+        siz=log2(n);
+        dp.resize(n);
+        for(int i=0;i<n;i++)
+        {
+            dp[i].resize(siz+1);
+            dp[i][0]=a[i];
+        }
+    }
+ 
+    void build(){
+        for(int j=1;j<=siz;j++){
+            for(int i=0;i<n;i++){
+                if(i+(1ll<<(j-1))<n)
+                    dp[i][j]=min(dp[i][j-1],dp[i+(1ll<<(j-1))][j-1]);
+                else
+                    break;
+            }
+        }
+    }
+ 
+    int query(int x, int y){
+        int l=y-x+1;
+        int z=63-__builtin_clzll(l);
+        return min(dp[x][z],dp[y-(1ll<<z)+1][z]);
+    }
+};
