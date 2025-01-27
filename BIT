@@ -1,6 +1,5 @@
 class FenwickTree{
- 
-private:
+
     int n;
     vector<int>v;
  
