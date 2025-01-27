@@ -1,6 +1,5 @@
 class BIT{
 
-public:
     int n;
     vector<int>v1;
     vector<int>v2;
