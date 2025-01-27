@@ -1,0 +1,36 @@
+class BIT{
+
+    int n;
+    vector<int>v;
+
+public:
+    BIT(vector<int>&a)
+    {
+        n=a.size()-1;
+        v.resize(n+1);
+    }
+
+    void update(int idx, int val)
+    {
+        for(int i=idx;i<=n;i+=(i&-i))
+        {
+            v[i]+=val;
+        }
+    }
+
+    void update(int l, int r, int val)
+    {
+        update(l, val);
+        update(r + 1, -val);
+    }
+
+    int query(int idx)
+    {
+        int sum=0;
+        for(int i=idx;i>0;i-=(i&-i))
+        {
+            sum+=v[i];
+        }
+        return sum;
+    }
+};
