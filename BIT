@@ -6,8 +6,8 @@ class FenwickTree{
 public:
     FenwickTree(vector<int>&a)
     {
-        v=a;
         n=a.size()-1;
+        v.resize(n+1);
     }
  
     void update(int idx, int val)
