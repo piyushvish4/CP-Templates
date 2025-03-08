@@ -1,8 +1,3 @@
-struct point{
-    ll x,y,a;
-    bool operator<(const point& p) const { return make_pair(x,y)<make_pair(p.x,p.y);}
-};
- 
 // CHT; query returns max of lines in set
 struct Line {
     mutable ll k, m, p;
